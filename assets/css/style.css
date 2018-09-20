@@ -1,0 +1,23 @@
+body {
+    background-color: #144149;
+}
+
+.btn {
+    margin: .5%;
+}
+
+#searchRow {
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+#searchCol {
+    text-align: center;
+}
+
+#usrInput {
+    padding-top: .3%;
+    padding-bottom: .3%;
+}
+
+#btnCol {
+}
