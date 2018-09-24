@@ -2,32 +2,32 @@
 console.log("Houston, we have code!");
 // Global varibales/arrays.
 // --------------------------------------------
-actors = ["Jim Carrey", "Robin Willims", "Michael Keaton", "Christopher Walken", "Samuel L. Jackson", "Morgan Freeman", "Leonardo DiCaprio", "Michael Caine", "Christian Bale", "Ben Affleck", "James Franco", "Paul Newman", "Gary Oldman", "Liam Neeson", "Robert Duvall"];
+randArray = ["Jim Carrey", "Cats", "Deadpool", "Eminem", "Anonymous", "Morgan Freeman", "Bananas", "America", "The Voice", "Katy Perry", "JavaScript", "Apple", "Yoda", "Liam Neeson", "SNL"];
 var imgArray = [];
 var imgStillArray = [];
 var rateArray = [];
 // --------------------------------------------
-// Create a loop to add static buttons from actors array.
-for (i = 0; i < actors.length; i++) {
-    // console.log(actors[i]);
-    $('#btnCol').append('<button type="button" class="btn btn-info searchBtn">' + actors[i] + '</button>');
+// Create a loop to add static buttons from randArray array.
+for (i = 0; i < randArray.length; i++) {
+    // console.log(randArray[i]);
+    $('#btnCol').append('<button type="button" class="btn btn-info searchBtn">' + randArray[i] + '</button>');
 }
 // Add the gifs to the document.
 function insertImgs() {
     for (i = 0; i < imgArray.length; i++) {
         var giphy = imgArray[i];
-        var actorImage = $("<img>");
-        actorImage.addClass("gifs");
-        actorImage.attr("data-state", "still");
-        actorImage.attr("data-still", imgStillArray[i]);
-        actorImage.attr("data-animate", giphy);
-        actorImage.attr("src", imgStillArray[i]);
-        var actorRating = $("<p>");
-        actorRating.addClass("gifs");
-        actorRating.text("Rating: " + rateArray[i]);
+        var randImage = $("<img>");
+        randImage.addClass("gifs");
+        randImage.attr("data-state", "still");
+        randImage.attr("data-still", imgStillArray[i]);
+        randImage.attr("data-animate", giphy);
+        randImage.attr("src", imgStillArray[i]);
+        var randRating = $("<p>");
+        randRating.addClass("gifs");
+        randRating.text("Rating: " + rateArray[i]);
         var divy = $("<div>");
-        divy.append(actorRating);
-        divy.append(actorImage);
+        divy.append(randRating);
+        divy.append(randImage);
         $("#gifsCol").append(divy);
     }
 }
@@ -45,7 +45,7 @@ function createArray(res) {
     for (i = 0; i < 10; i++) {
         imgArray.push(res.data[i].images.fixed_height.url);
         imgStillArray.push(res.data[i].images.fixed_height_still.url);
-        rateArray.push(res.data[i].rating);
+        rateArray.push(res.data[i].rating.toUpperCase());
         //console.log(rateArray);
     }
     checkImgs();
@@ -88,8 +88,9 @@ $('#clearBtns').on("click", function () {
     console.log("Removing");
 });
 // Click the #add-btn button to add a new button with the #usrInput's value.
-$('#add-btn').on("click", function () {
-    var inputData = $('#usrInput').val();
+$('#add-btn').on("click", function (e) {
+    e.preventDefault();
+    var inputData = $('#usrInput').val().trim();
     if (inputData === "") {
         // Placeholder.
     } else {
@@ -100,5 +101,11 @@ $('#add-btn').on("click", function () {
         newBtn.text(inputData);
         $('#btnCol').append(newBtn);
         $('#usrInput').val('');
+    }
+});
+// Enter (13) key triggers the add-btn function.
+$("#usrInput").keyup(function (e) {
+    if (e.which == 13) {
+        $('#add-btn').click();
     }
 });
