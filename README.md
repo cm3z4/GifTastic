@@ -1,5 +1,7 @@
 # GifTastic
 
-Using the GIPHY API and JavaScript/jQuery to search for GIFs.
+A web application built with the GIPHY API and JavaScript/jQuery.
 
-https://cm3z4.github.io/GifTastic/
+Features: Search any subject and get the most recent GIFs from GIPHY with no annoying ads, etc...
+
+Live --> https://cm3z4.github.io/GifTastic/
